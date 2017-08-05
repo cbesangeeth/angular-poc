@@ -1,81 +1,55 @@
-/**
- * 
- */
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
+app.controller('myCtrl', function ($scope) {
 	$scope.InsurencObj = {
-		product : [
-
-		{
-			id : "0",
-			Name : "A",
-			Catogery : "TypA",
-			Code : "1001",
-			
-
-			Entity : [ {
-				Id : "1",
-				Name : "Entity1",
-				Code : "2001",
-				Attribute : [ {
-					Id : "1",
-					Name : "Att1",
-					Code : "2001"
+		product: [{
+			id: "0", Name: "A", Catogery: "TypA", Code: "1001",
+			Entity: [{
+				Id: "1", Name: "Entity1", Code: "2001", isSelected: false, isCustom: false,
+				Attribute: [{
+					Id: "1", Name: "Att1", Code: "2001", isSelected: false, isCustom: false,
 				}, {
-					Id : "1",
-					Name : "Att1",
-					Code : "2001"
-				} ]
+					Id: "1", Name: "Att1", Code: "2001", isSelected: false, isCustom: false,
+				}]
 			}, {
-				Id : "1",
-				Name : "Entity1",
-				Code : "2001",
-				Attribute : [ {
-					Id : "1",
-					Name : "Att1",
-					Code : "2001"
+				Id: "1", Name: "Entity1", Code: "2001", isSelected: false, isCustom: false,
+				Attribute: [{
+					Id: "1", Name: "Att1", Code: "2001", isSelected: false, isCustom: false,
 				}, {
-					Id : "1",
-					Name : "Att1",
-					Code : "2001"
-				} ]
-			} ]
-		}
-
-		,
-
+					Id: "1", Name: "Att1", Code: "2001", isSelected: false, isCustom: false,
+				}]
+			}]
+		},
 		{
-			id : "0",
-			Name : "B",
-			Catogery : "TypA",
-			Code : "1001",
-
-			Entity : [ {
-				Id : "1",
-				Name : "Entity1",
-				Code : "2001",
-				Attribute : [ {
-					Id : "1",
-					Name : "Att1",
-					Code : "2001"
-				} ]
-			} ]
-		} ]
+			id: "0", Name: "B", Catogery: "TypA", Code: "1001",
+			Entity: [{
+				Id: "1", Name: "Entity1", Code: "2001", isSelected: false, isCustom: false,
+				Attribute: [{
+					Id: "1", Name: "Att1", Code: "2001", isSelected: false, isCustom: false,
+				}]
+			}]
+		}]
 	}
-	$scope.productClick = function(x){
-		if(x.showEntity === undefined){
-			x.showEntity = true;
-		}else{
-			x.showEntity = !x.showEntity;
+	$scope.expandClick = function (x) {
+		if (x.showObj === undefined) {
+			x.showObj = true;
+		} else {
+			x.showObj = !x.showObj;
 		}
 	}
-	$scope.entityClick = function(x){
-		if(x.showAttribute === undefined){
+	$scope.addObj = function (x) {
+		if (x.showAttribute === undefined) {
 			x.showAttribute = true;
-		}else{
-			x.showAttribute = !x.showAttribute;
 		}
+
+		x.push({
+			Id: "",
+			Name: "",
+			Code: "",
+			isSelected: false,
+			isCustom: true
+		});
 	}
+
 });
 
 

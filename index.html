@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
+<style>
+	.abs {
+		position: absolute;
+		width: 50%;
+		border: 1px solid;
+		color: gray;
+	}
+
+	.rel {
+		position: relative;
+		width: 30%;
+		border: 1px solid;
+		color: red;
+		left: 100%;
+	}
+	.width80{
+		width: 80%;
+	}
+</style>
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
@@ -15,20 +33,37 @@
 		result :
 		<p></p>
 
-<div>
-		<div ng-repeat="x in InsurencObj.product">
-			<span ng-click="productClick(x)">{{x.Name}} </span>
-			<div ng-if="x.showEntity == true">
-				<div ng-repeat="y in x.Entity">
-					<span ng-click="entityClick(y)">{{y.Name}}</span>
-					<div ng-if="y.showAttribute == true">
-						<div ng-repeat="z in y.Attribute">
-							<span>{{z.Name}}</span>
+		<div class="abs">
+			<div ng-repeat="x in InsurencObj.product">
+				<span ng-click="expandClick(x)">{{x.Name}} </span>
+				<div ng-if="x.showObj == true" class="rel">
+					<div ng-repeat="y in x.Entity">
+						<div ng-if="y.isCustom == true">
+							<input type="text" ng-model="y.Name"  class="width80"/>
+							<input type="checkbox" ng-model="y.isSelected" />
+						</div>
+						<div ng-if="y.isCustom == false">
+							<span ng-click="expandClick(y)">{{y.Name}}</span>
+							<input type="checkbox" ng-model="y.isSelected" />
+						</div>
+						<div ng-if="y.showObj == true" class="rel">
+							<div ng-repeat="z in y.Attribute">
+								<div ng-if="z.isCustom == true">
+									<input type="text" ng-model="z.Name"  class="width80"/>
+									<input type="checkbox" ng-model="z.isSelected" />
+								</div>
+								<div ng-if="z.isCustom == false">
+									<span>{{z.Name}}</span>
+									<input type="checkbox" ng-model="z.isSelected" />
+								</div>
+							</div>
+							<div ng-click="addObj(y.Attribute)">--Add--</div>
 						</div>
 					</div>
+					<div ng-click="addObj(x.Entity)">--Add--</div>
 				</div>
 			</div>
 		</div>
-		</div>
 </body>
+
 </html>
